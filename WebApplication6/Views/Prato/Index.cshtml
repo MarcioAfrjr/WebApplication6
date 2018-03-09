@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApplication6.Models.Prato>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+    <form>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" name="Prato" value=@Html.DisplayFor(modelItem => item.PratoId)>@Html.DisplayFor(modelItem => item.Name)<br>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PratoId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PratoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PratoId })
+            </td>
+        </tr>
+    }
+    </form>
+
+</table>
+<p>Id dos pratos do pedido</p>
+<input type="text" id="order" size="50">
+<button onclick="fazPedido()" style=" color:black;cursor:pointer">@Html.ActionLink("FazerPedido", "Pedido", "Prato")</button>
+<button type="button" onclick="fazPedido()"> teste </button>
+<script>
+    function fazPedido() {
+        var pratos = document.forms[0];
+        var i;
+        var txt = "";
+        for (i = 0; i < pratos.length; i++) {
+            if (pratos[i].checked) {
+                txt = txt + pratos[i].value;
+            }
+        }
+        document.getElementById("order").value = txt;
+    }
+    </script>
