@@ -56,7 +56,6 @@ namespace WebApplication6.Controllers
             return View();
         }
 
-        // GET: Prato/Create
         public ActionResult Create()
         {
             return View();
